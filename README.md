@@ -20,3 +20,5 @@ I have also deployed the application on AWS using Elastic beanstalk.
 Demo url - http://coronavirus-tracker-dev.ap-south-1.elasticbeanstalk.com/
 
 P.S. - if the url is not working, then i may have shutdown the EC2 instances on AWS to save the bill :)
+
+Reference - I followed this awsome tutorial by Kaushik for this (https://www.youtube.com/watch?v=8hjNG9GZGnQ&t=116s)

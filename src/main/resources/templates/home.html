@@ -10,21 +10,24 @@
 
 <body>
 <div class="container">
-<h1>Coronavirus Tracker Application</h1>
-<p>This application lists the current number of cases reported across the globe (Refreshes every day)</p>
+<h1 class="display-4">Coronavirus Tracker Application</h1>
+<p class="font-italic">This application lists the current number of cases reported across the globe (Refreshes every day)</p>
 
 <div class="jumbotron">
-    <p>
-        <span class="lead">Total cases reported as of today :</span>
-        <span th:text="${asOfDate}"></span>
+    <p>        
+        <span class="lead" th:text="'Total cases reported as of today (' + ${asOfDate} + ') : '" ></span>
+        <h1 class="text-primary display-4" th:text="${totalReportedCases}"></h1>
     </p>
-    <!-- <p class="lead">Total cases reported as of today</p> -->
-    <h1 class="display-4" th:text="${totalReportedCases}"></h1>
     
     <hr class="my-4">
+
     <p>
-        <span th:text="'New cases reported since previous day (' + ${prevDate} + '): '" ></span>
-        <span th:text="${totalNewCases}"></span>
+        <span class="lead" th:text="'New cases reported since previous day (' + ${prevDate} + ') : '" ></span>
+        <span class="lead" th:classappend="${totalNewCases > totalAvgChanges} ? text-danger : text-success" th:text="${totalNewCases}"></span>
+    </p>
+    <p>
+        <span th:text="'Last 3 days average changes : '" ></span>
+        <span th:text="${totalAvgChanges}"></span>
     </p>
 
 </div>
@@ -35,16 +38,47 @@
             <th>State</th>            
             <th>Total cases reported</th>
             <th>Changes since last day</th>
+            <th>Last 3 days avg. changes</th>
         </tr>
         <tr th:each="locationStat : ${locationStats}">
             <td th:text="${locationStat.country}"></td>
             <td th:text="${locationStat.state}"></td>            
             <td th:text="${locationStat.latestTotalCases}">0</td>
-            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+            <td th:style="${locationStat.diffFromPrevDay > locationStat.last3DaysAvgChange ? 'color: red;' : 'color: green;' }" th:text="${locationStat.diffFromPrevDay}">0</td>
+            <!-- <td th:style="${'color: red;'}" th:text="${locationStat.diffFromPrevDay}">0</td> -->
+            <td th:text="${locationStat.last3DaysAvgChange}">0</td>
         </tr>
     </table>
 </div>
-<p>Data source : Data Repository by Johns Hopkins CSSE for educational purpose only (https://github.com/CSSEGISandData/COVID-19)</p>
+
+
+
 </body>
+
+<div class="card-footer p-3 mb-2 bg-info">
+    <div class="text-white">Data source : Data repository by Johns Hopkins CSSE for educational purpose only:
+        <a class="text-white" target="_blank" href="https://github.com/CSSEGISandData/COVID-19">https://github.com/CSSEGISandData/COVID-19</a>
+      </div>
+
+      <p class="text-white">
+        <span>Source code at : </span>
+        <span>
+            <a class="text-white" target="_blank" href="https://github.com/viralharia/coronavirus-tracker">https://github.com/viralharia/coronavirus-tracker</a>
+        </span>
+      </p>
+      
+
+      <div class="text-white">
+          <span>Created by: Viral Haria - </span>
+          <span>
+            <a class="text-white"  target="_blank" href="https://www.linkedin.com/in/viral-haria-/">| LinkedIn </a>
+          </span>
+
+          <span>
+            <a class="text-white" target="_blank" href="https://twitter.com/viralharia">| Twitter |</a>
+          </span>
+      </div>
+  </div>
+
 
 </html>

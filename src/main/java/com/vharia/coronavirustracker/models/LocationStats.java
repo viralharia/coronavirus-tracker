@@ -9,6 +9,7 @@ public class LocationStats {
     private String country;
     private int latestTotalCases;
     private int diffFromPrevDay;
+    private float last3DaysAvgChange;
 
     public String getState() {
         return state;
@@ -46,6 +47,14 @@ public class LocationStats {
 
     public void setDiffFromPrevDay(int diffFromPrevDay) {
         this.diffFromPrevDay = diffFromPrevDay;
+    }
+
+    public float getLast3DaysAvgChange() {
+        return last3DaysAvgChange;
+    }
+
+    public void setLast3DaysAvgChange(float last3DaysAvg) {
+        this.last3DaysAvgChange = last3DaysAvg;
     }
     
     

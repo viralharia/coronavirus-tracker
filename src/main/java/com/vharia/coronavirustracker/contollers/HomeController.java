@@ -1,5 +1,6 @@
 package com.vharia.coronavirustracker.contollers;
 
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,17 +25,21 @@ public class HomeController {
     public String home(Model model){
         List<LocationStats> allStats = service.getAllStats();
         Collections.sort(allStats, (LocationStats o1, LocationStats o2) -> o1.getCountry().compareTo(o2.getCountry()));
-
+        
+        NumberFormat myFormat = NumberFormat.getInstance();
         
         int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
 
         int totalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
+        double totalAvgChanges = allStats.stream().mapToDouble(stat -> stat.getLast3DaysAvgChange()).sum();
 
         model.addAttribute("locationStats", allStats);
 
-        model.addAttribute("totalReportedCases", totalReportedCases);
+        model.addAttribute("totalReportedCases", myFormat.format(totalReportedCases));
 
-        model.addAttribute("totalNewCases", totalNewCases);
+        model.addAttribute("totalNewCases", myFormat.format(totalNewCases));
+
+        model.addAttribute("totalAvgChanges", myFormat.format(totalAvgChanges));
 
         model.addAttribute("asOfDate", service.getAsOfDate());
 
