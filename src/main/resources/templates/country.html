@@ -13,8 +13,10 @@
 <h1 class="display-4">Coronavirus Tracker Application</h1>
 <p class="font-italic">This application lists the current number of cases reported across the globe (Refreshes every day)</p>
 
-<a class="font-italic" style="text-decoration: underline;" href="./country">| Country wise |</a>
-<a class="font-italic" style="text-decoration: underline;" href="./continent"> Continent wise |</a>
+<a class="font-italic" style="text-decoration: underline;" href="./">| State wise |</a>
+<a class="font-italic" style="text-decoration: underline;" href="./country" th:if="${country_continent_header_value == 'Continent'}"> Country  wise |</a>
+<a class="font-italic" style="text-decoration: underline;" href="./continent" th:unless="${country_continent_header_value == 'Continent'}"> Continent  wise |</a>
+
 
 <div class="jumbotron">
     <p>        
@@ -37,15 +39,13 @@
 
     <table class="table">
         <tr>
-            <th>Country</th>
-            <th>State</th>            
+            <th th:text="${country_continent_header_value}"></th>                     
             <th>Total cases reported</th>
             <th>Changes since last day</th>
             <th>Last 3 days avg. changes</th>
         </tr>
         <tr th:each="locationStat : ${locationStats}">
-            <td th:text="${locationStat.country}"></td>
-            <td th:text="${locationStat.state}"></td>            
+            <td th:text="${locationStat.country}"></td>                      
             <td th:text="${locationStat.latestTotalCases}">0</td>
             <td th:style="${locationStat.diffFromPrevDay > locationStat.last3DaysAvgChange ? 'color: red;' : 'color: green;' }" th:text="${locationStat.diffFromPrevDay}">0</td>
             <!-- <td th:style="${'color: red;'}" th:text="${locationStat.diffFromPrevDay}">0</td> -->
