@@ -60,7 +60,7 @@
         "continent": "Asia"
     },
     {
-        "country": "Bahamas, The",
+        "country": "Bahamas",
         "continent": "North America"
     },
     {
@@ -252,6 +252,10 @@
         "continent": "Asia"
     },
     {
+        "country": "Timor-Leste",
+        "continent": "Asia"
+    },
+    {
         "country": "Taiwan*",
         "continent": "Asia"
     },
@@ -324,7 +328,7 @@
         "continent": "Africa"
     },
     {
-        "country": "Gambia, The",
+        "country": "Gambia",
         "continent": "Africa"
     },
     {
